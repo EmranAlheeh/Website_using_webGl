@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; background-color: whitesmoke; }
+		</style>
+	</head>
+	<body style="background-color: azure;">
+		<script src="js/three.js"></script>
+		<script>
+			 
+            var winW = window.innerWidth;
+            var winH = window.innerHeight;
+
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(50, winW / winH, 0.01, 10);
+
+            var renderer = new THREE.WebGLRenderer({antialias: true});
+            renderer.setSize(winW, winH);
+            document.body.appendChild(renderer.domElement);
+            var radius = 4;
+            var height = 5;
+
+
+            var geometry = new THREE.CylinderGeometry(0, radius, height, 4, 1)
+            var material = new THREE.MeshNormalMaterial();
+            var pyramid = new THREE.Mesh(geometry, material);
+            scene.add(pyramid);
+
+
+            camera.position.z = 10;
+
+            var render = function () {
+                requestAnimationFrame(render);
+                pyramid.rotation.x += 0.00;
+                pyramid.rotation.y += 0.01;
+
+                renderer.render(scene, camera);
+            };
+
+            render();
+
+			 
+		</script>
+	</body>
+</html>
